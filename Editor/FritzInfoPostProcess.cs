@@ -7,7 +7,7 @@ using System.IO;
 public static class FritzInfoPostProcess
 {
 
-    private static string PACKAGE_PATH = "Packages/ai.fritz.vision-unity";
+    private static string PACKAGE_PATH = "Packages/ai.fritz.vision";
     [PostProcessBuild]
     public static void OnPostProcessBuild(BuildTarget buildTarget, string buildPath)
     {
@@ -18,7 +18,7 @@ public static class FritzInfoPostProcess
 
         string sourcePath = "Runtime/iOS/Source/";
         string sourceFolder = Path.Combine(PACKAGE_PATH, sourcePath);
-        string libraryPath = "Libraries/ai.fritz.vision-unity/Runtime/iOS/Source/";
+        string libraryPath = "Libraries/ai.fritz.vision/Runtime/iOS/Source/";
         string plistPath = Path.Combine(sourceFolder, "Fritz-Info.plist");
         string xcodePath = Path.Combine(buildPath, libraryPath, "Fritz-Info.plist");
 
