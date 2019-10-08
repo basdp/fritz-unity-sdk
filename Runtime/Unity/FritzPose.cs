@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-// Pose Parts 
+/// <summary>
+/// The human pose parts
+/// </summary>
 public enum FritzPoseParts
 {
     Nose = 0,
@@ -23,7 +25,9 @@ public enum FritzPoseParts
     RightAnkle = 16
 }
 
-
+/// <summary>
+/// A keypoint in a pose
+/// </summary>
 public class Keypoint
 {
     public FritzPoseParts part;
@@ -38,7 +42,9 @@ public class Keypoint
     }
 }
 
-
+/// <summary>
+/// A pose detected by the pose estimation model
+/// </summary>
 public class FritzPose
 {
     public List<Keypoint> keypoints;

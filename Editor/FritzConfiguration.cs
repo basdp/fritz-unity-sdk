@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
@@ -104,6 +105,12 @@ public class FritzConfiguration : ScriptableObject
 
     internal static FritzConfiguration GetOrCreateSettings()
     {
+        // Create a directory for plugins if none exists
+        if(!Directory.Exists("Assets/Plugins"))
+        {
+            Directory.CreateDirectory("Assets/Plugins");
+        }
+
         var settings = AssetDatabase.LoadAssetAtPath<FritzConfiguration>(k_FritzConfigurationPath);
         if (settings == null)
         {
