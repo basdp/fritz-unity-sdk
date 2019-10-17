@@ -10,9 +10,9 @@
     "url": "https://fritz.ai"
   },
   "dependencies": {
-    "com.unity.xr.arcore": "3.0.0-beta.3",
-    "com.unity.xr.arfoundation": "3.0.0-beta.3",
-    "com.unity.xr.arkit": "3.0.0-beta.3",
+    "com.unity.xr.arcore": "3.0.0-preview.3",
+    "com.unity.xr.arfoundation": "3.0.0-preview.3",
+    "com.unity.xr.arkit": "3.0.0-preview.3",
     "com.unity.modules.androidjni": "1.0.2",
     "com.unity.modules.xr": "1.0.2"
   }
