@@ -1,71 +1,75 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// The human pose parts
-/// </summary>
-public enum FritzPoseParts
+namespace AI.Fritz.Vision
 {
-    Nose = 0,
-    LeftEye = 1,
-    RightEye = 2,
-    LeftEar = 3,
-    RightEar = 4,
-    LeftShoulder = 5,
-    RightShoulder = 6,
-    LeftElbow = 7,
-    RightElbow = 8,
-    LeftWrist = 9,
-    RightWrist = 10,
-    LeftHip = 11,
-    RightHip = 12,
-    LeftKnee = 13,
-    RightKnee = 14,
-    LeftAnkle = 15,
-    RightAnkle = 16
-}
+	/// <summary>
+	/// The human pose parts
+	/// </summary>
+	public enum FritzPoseParts
+	{
+		Nose = 0,
+		LeftEye = 1,
+		RightEye = 2,
+		LeftEar = 3,
+		RightEar = 4,
+		LeftShoulder = 5,
+		RightShoulder = 6,
+		LeftElbow = 7,
+		RightElbow = 8,
+		LeftWrist = 9,
+		RightWrist = 10,
+		LeftHip = 11,
+		RightHip = 12,
+		LeftKnee = 13,
+		RightKnee = 14,
+		LeftAnkle = 15,
+		RightAnkle = 16
+	}
 
-/// <summary>
-/// A keypoint in a pose
-/// </summary>
-public class Keypoint
-{
-    public FritzPoseParts part;
-    public Vector2 position;
-    public double confidence;
+	/// <summary>
+	/// A keypoint in a pose
+	/// </summary>
+	public class Keypoint
+	{
+		public FritzPoseParts part;
+		public Vector2 position;
+		public double confidence;
 
-    public Keypoint(FritzPoseParts part, Vector2 position, double confidence)
-    {
-        this.part = part;
-        this.position = position;
-        this.confidence = confidence;
-    }
-}
+		public Keypoint(FritzPoseParts part, Vector2 position, double confidence)
+		{
+			this.part = part;
+			this.position = position;
+			this.confidence = confidence;
+		}
+	}
 
-/// <summary>
-/// A pose detected by the pose estimation model
-/// </summary>
-public class FritzPose
-{
-    public List<Keypoint> keypoints;
-    readonly int PART_INDEX = 0;
-    readonly int X_POS_INDEX = 1;
-    readonly int Y_POS_INDEX = 2;
-    readonly int CONFIDENCE_INDEX = 3;
+	/// <summary>
+	/// A pose detected by the pose estimation model
+	/// </summary>
+	public class FritzPose
+	{
+		public List<Keypoint> keypoints;
+		readonly int PART_INDEX = 0;
+		readonly int X_POS_INDEX = 1;
+		readonly int Y_POS_INDEX = 2;
+		readonly int CONFIDENCE_INDEX = 3;
 
-    public FritzPose(List<List<float>> rawPose)
-    {
-        keypoints = new List<Keypoint>();
+		public FritzPose(List<List<float>> rawPose)
+		{
+			keypoints = new List<Keypoint>();
 
-        foreach (List<float> item in rawPose)
-        {
-            int part = (int)item[PART_INDEX];
+			foreach (List<float> item in rawPose)
+			{
+				int part = (int)item[PART_INDEX];
 
-            Keypoint keypoint = new Keypoint(
-                (FritzPoseParts)part,
-                new Vector2(item[X_POS_INDEX], item[Y_POS_INDEX]),
-                (double)item[CONFIDENCE_INDEX]);
-            keypoints.Add(keypoint);
-        }
-    }
+				Keypoint keypoint = new Keypoint(
+					(FritzPoseParts)part,
+					new Vector2(item[X_POS_INDEX], item[Y_POS_INDEX]),
+					(double)item[CONFIDENCE_INDEX]);
+				keypoints.Add(keypoint);
+			}
+		}
+	}
+
 }
