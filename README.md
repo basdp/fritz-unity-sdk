@@ -46,3 +46,10 @@ To modify your Android project settings in Unity, go to `Edit > Project Settings
 5.  If you have not done so, [Sign up for a free account](https://app.fritz.ai/register?utc_source=github&utc_campaign=fritz-unity-sdk) then create an app on Fritz that matches the Bundle ID defined in unity.
 6.  Copy the API Key from the Fritz webapp (`Project Settings > "Your App" > Show API Key`) into the iOS API Key input.
 7.  In the Unity `Build Settings` window, click `Build and Run`.
+
+## Stay in touch with Fritz AI
+
+To keep tabs on what we’re up to, and for an inside look at the opportunities, challenges, and tools for mobile machine learning, subscribe to the [Fritz AI Newsletter](https://www.fritz.ai/newsletter?utm_campaign=unity-sdk&utm_source=github).
+
+## Join the Community
+[Heartbeat](https://heartbeat.fritz.ai/?utm_campaign=unity-sdk&utm_source=github) is a community of developers interested in the intersection of mobile and machine learning. Chat with us in [Slack](https://www.fritz.ai/slack?utm_campaign=unity-sdk&utm_source=github), and stay up-to-date on industry news, trends, and more by subscribing to [Deep Learning Weekly](https://www.deeplearningweekly.com/?utm_campaign=unity-sdk&utm_source=github).
