@@ -32,7 +32,7 @@ public class DownloadFramework
             ExecuteBashCommand(String.Format("unzip -q -o {0} -d {1}", tempFile, tempDir));
             ExecuteBashCommand(String.Format("mkdir -p Assets/Plugins/iOS/Frameworks/"));
             var result = ExecuteBashCommand(
-                String.Format("cp -R {0}/Frameworks/* {1}", tempDir, "Assets/Plugins/iOS/Frameworks/")
+                String.Format("cp -R {0}/swift-framework-{1}/Frameworks/* {2}", tempDir, version, "Assets/Plugins/iOS/Frameworks/")
             );
             AssetDatabase.Refresh();
         }
@@ -51,8 +51,8 @@ public class DownloadFramework
                 FileName = "/bin/bash",
                 Arguments = "-c \"" + command + "\"",
                 UseShellExecute = false,
-                RedirectStandardOutput = false,
-                RedirectStandardError = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
                 RedirectStandardInput = false,
                 CreateNoWindow = true
             }
