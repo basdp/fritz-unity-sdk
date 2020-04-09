@@ -13,7 +13,7 @@
   ### Download Fritz Frameworks
   Click the Download button to download the Fritz Frameworks.
   
-  Note: If you are using Xcode 10, use version 4.0.1. If you are using Xcode 11 Beta 5, use at least 4.1.0.
+  Note: If you are using Xcode 11.4, set version to 5.3.1.
   
 3. Add ARKit Packages
 
