@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
+#if UNITY_IOS
 using UnityEditor.iOS.Xcode;
+#endif
 using System.IO;
 
 public static class FritzInfoPostProcess
@@ -11,11 +13,7 @@ public static class FritzInfoPostProcess
     [PostProcessBuild]
     public static void OnPostProcessBuild(BuildTarget buildTarget, string buildPath)
     {
-        if (buildTarget != BuildTarget.iOS)
-        {
-            return;
-        }
-
+        #if UNITY_IOS
         string sourcePath = "Runtime/iOS/Source/";
         string sourceFolder = Path.Combine(PACKAGE_PATH, sourcePath);
         string libraryPath = "Libraries/ai.fritz.vision/Runtime/iOS/Source/";
@@ -48,6 +46,7 @@ public static class FritzInfoPostProcess
         infoPlist.ReadFromFile(infoPath);
         infoPlist.root.SetString("NSCameraUsageDescription", "For ML Camera Usage");
         File.WriteAllText(infoPath, infoPlist.WriteToString());
+        #endif
     }
 
 }
