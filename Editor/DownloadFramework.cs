@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+using UnityEditor;
 using System.Net;
 using System.IO;
 using System;
@@ -9,15 +9,13 @@ public class DownloadFramework
 {
 
     private readonly string FRAMEWORK_FMT =
-        "https://github.com/fritzlabs/swift-framework/releases/download/{0}/{1}.zip";
+        "https://github.com/fritzlabs/swift-framework/archive/{0}.zip";
     public string version;
-    public string name;
 
 
-    public DownloadFramework(string version, string name)
+    public DownloadFramework(string version)
     {
         this.version = version;
-        this.name = name;
     }
 
     public void Download()
@@ -27,16 +25,23 @@ public class DownloadFramework
             var tempFile = Path.GetTempFileName();
             var tempDir = Path.GetTempPath();
 
-            var path = String.Format(FRAMEWORK_FMT, version, name);
+            var path = String.Format(FRAMEWORK_FMT, version);
 
             client.DownloadFile(new Uri(path), tempFile);
 
-            ExecuteBashCommand(String.Format("unzip -o {0} -d {1}", tempFile, tempDir));
-            ExecuteBashCommand(String.Format("mkdir -p Assets/Plugins/iOS/Frameworks/"));
             var result = ExecuteBashCommand(
-                String.Format("cp -R {0}/Frameworks/* {1}", tempDir, "Assets/Plugins/iOS/Frameworks/")
+                String.Format("cp -R {0}/swift-framework-{1}/Frameworks/* {2}", tempDir, version, "Assets/Plugins/iOS/Frameworks/")
             );
-            AssetDatabase.Refresh();
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);
+
+            PluginImporter[] importers = PluginImporter.GetImporters(BuildTarget.iOS);
+            foreach (var importer in importers)
+			{
+                if (importer.assetPath.StartsWith("Assets/Plugins/iOS/Frameworks/Fritz") && importer.assetPath.EndsWith(".framework"))
+				{
+                    importer.SetPlatformData(BuildTarget.iOS, "AddToEmbeddedBinaries", "true");
+                }
+            }
         }
     }
 
@@ -52,9 +57,10 @@ public class DownloadFramework
             {
                 FileName = "/bin/bash",
                 Arguments = "-c \"" + command + "\"",
-                UseShellExecute = false,
                 RedirectStandardOutput = true,
-                CreateNoWindow = true
+                RedirectStandardInput = false,
+                RedirectStandardError = true,
+                UseShellExecute = false
             }
         };
 
