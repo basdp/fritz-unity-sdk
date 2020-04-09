@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+using UnityEditor;
 using System.Net;
 using System.IO;
 using System;
@@ -9,15 +9,13 @@ public class DownloadFramework
 {
 
     private readonly string FRAMEWORK_FMT =
-        "https://github.com/fritzlabs/swift-framework/releases/download/{0}/{1}.zip";
+        "https://github.com/fritzlabs/swift-framework/archive/{0}.zip";
     public string version;
-    public string name;
 
 
-    public DownloadFramework(string version, string name)
+    public DownloadFramework(string version)
     {
         this.version = version;
-        this.name = name;
     }
 
     public void Download()
@@ -27,7 +25,7 @@ public class DownloadFramework
             var tempFile = Path.GetTempFileName();
             var tempDir = Path.GetTempPath();
 
-            var path = String.Format(FRAMEWORK_FMT, version, name);
+            var path = String.Format(FRAMEWORK_FMT, version);
 
             client.DownloadFile(new Uri(path), tempFile);
 
