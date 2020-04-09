@@ -29,12 +29,19 @@ public class DownloadFramework
 
             client.DownloadFile(new Uri(path), tempFile);
 
-            ExecuteBashCommand(String.Format("unzip -q -o {0} -d {1}", tempFile, tempDir));
-            ExecuteBashCommand(String.Format("mkdir -p Assets/Plugins/iOS/Frameworks/"));
             var result = ExecuteBashCommand(
                 String.Format("cp -R {0}/swift-framework-{1}/Frameworks/* {2}", tempDir, version, "Assets/Plugins/iOS/Frameworks/")
             );
-            AssetDatabase.Refresh();
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);
+
+            PluginImporter[] importers = PluginImporter.GetImporters(BuildTarget.iOS);
+            foreach (var importer in importers)
+	    {
+                if (importer.assetPath.StartsWith("Assets/Plugins/iOS/Frameworks/Fritz") && importer.assetPath.EndsWith(".framework"))
+		{
+                    importer.SetPlatformData(BuildTarget.iOS, "AddToEmbeddedBinaries", "true");
+                }
+            }
         }
     }
 
@@ -50,11 +57,10 @@ public class DownloadFramework
             {
                 FileName = "/bin/bash",
                 Arguments = "-c \"" + command + "\"",
-                UseShellExecute = false,
                 RedirectStandardOutput = true,
-                RedirectStandardError = true,
                 RedirectStandardInput = false,
-                CreateNoWindow = true
+                RedirectStandardError = true,
+                UseShellExecute = false
             }
         };
 
