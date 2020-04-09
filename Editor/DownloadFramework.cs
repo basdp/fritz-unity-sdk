@@ -32,7 +32,7 @@ public class DownloadFramework
             ExecuteBashCommand(String.Format("unzip -q -o {0} -d {1}", tempFile, tempDir));
             ExecuteBashCommand(String.Format("mkdir -p Assets/Plugins/iOS/Frameworks/"));
             var result = ExecuteBashCommand(
-                String.Format("cp -R {0}/swift-framework-{1}/Frameworks/* {2}", tempDir, version, "Assets/Plugins/iOS/Frameworks/")
+                String.Format("rsync -a {0}/swift-framework-{1}/Frameworks ./Assets/Plugins/iOS/Frameworks --exclude FritzVisionHumanPoseModelSmall.framework --exclude FritzVisionDepthModel.framework", tempDir, version)
             );
             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);
 
