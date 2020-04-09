@@ -36,9 +36,9 @@ public class DownloadFramework
 
             PluginImporter[] importers = PluginImporter.GetImporters(BuildTarget.iOS);
             foreach (var importer in importers)
-	    {
+            {
                 if (importer.assetPath.StartsWith("Assets/Plugins/iOS/Frameworks/Fritz") && importer.assetPath.EndsWith(".framework"))
-		{
+                {
                     importer.SetPlatformData(BuildTarget.iOS, "AddToEmbeddedBinaries", "true");
                 }
             }
