@@ -10,7 +10,7 @@ import Foundation
 
 import AVFoundation
 import UIKit
-import FritzVisionPoseModel
+import FritzVisionHumanPoseModelFast
 
 
 
@@ -72,7 +72,7 @@ import FritzVisionPoseModel
 @objc public class FritzVisionUnityPoseModel: NSObject {
 
   var latestPose: FritzVisionPoseResult<HumanSkeleton>?
-  lazy var poseModel = FritzVisionHumanPoseModel()
+  lazy var poseModel = FritzVisionHumanPoseModelFast()
 
   @objc public var callbackTarget = "FritzPoseController"
   @objc public var callbackFunctionTarget = "UpdatePose"
