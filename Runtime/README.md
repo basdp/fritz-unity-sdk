@@ -26,7 +26,7 @@ Select `iOS` and click `Switch Platform`. After the process finishes, click on `
 4. In Project Settings, click `Fritz`.
 5. If you have not done so, [Sign up for a free account](https://app.fritz.ai/register) then create an app on Fritz that matches the Bundle ID defined in unity.
 6. Copy the API Key from the Fritz webapp (`Project Settings > "Your App" > Show API Key`) into the iOS API Key input.
-7. Click download to download the necessary Fritz Frameworks. If you are using Xcode 10.3, set version to 4.0.1.
+7. Click download to download the necessary Fritz Frameworks. If you are using Xcode 11.4, set version to 5.3.1.
 8. In the Unity `Build Settings` window, click `Build and Run`.
 9. Click on Window -> Package Manager. From there, add the ARFoundation and ARKit XR Plugin.
 
