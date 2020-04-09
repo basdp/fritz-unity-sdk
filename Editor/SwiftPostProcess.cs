@@ -43,7 +43,7 @@ public static class SwiftPostProcess
 
                 FRAMEWORK_TMP_PATH=""$FRAMEWORK_EXECUTABLE_PATH-tmp""
 
-                # remove simulator's archs if location is not simulator's directory
+                : remove simulator's archs if location is not simulator's directory
                 case ""${TARGET_BUILD_DIR}"" in
                 *""iphonesimulator"")
                     echo ""No need to remove archs""
