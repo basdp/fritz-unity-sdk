@@ -112,7 +112,7 @@ public class FritzConfiguration : ScriptableObject
         if (settings == null)
         {
             settings = ScriptableObject.CreateInstance<FritzConfiguration>();
-            settings.sdkVersion = "4.1.1";
+            settings.sdkVersion = "5.3.1";
 
             AssetDatabase.CreateAsset(settings, k_FritzConfigurationPath);
             AssetDatabase.SaveAssets();
